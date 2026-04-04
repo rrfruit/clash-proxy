@@ -7,6 +7,10 @@ mode: rule
 proxies:
 
 proxy-groups:
+  - name: "我的跳板"
+    type: select
+    use:
+     - "第三方订阅"
   - name: "第三方订阅"
     type: select
     use:
