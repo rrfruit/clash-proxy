@@ -5,8 +5,8 @@ services:
     image: metacubex/mihomo:latest
     restart: unless-stopped
     ports:
-      - "127.0.0.1:7890:7890/tcp"
-      - "127.0.0.1:28001:28001/tcp"
+      - "7890:7890"
+      - "28001:28001"
     volumes:
       - ./clash:/root/.config/mihomo
 
