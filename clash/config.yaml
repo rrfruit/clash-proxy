@@ -22,6 +22,7 @@ proxy-groups:
     proxies:
       - "链式-订阅到SOCKS"
       - "我的SOCKS"
+      - "订阅自动优选"
     use:
      - "第三方订阅"
   - name: "第三方订阅"
