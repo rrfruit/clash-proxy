@@ -88,9 +88,3 @@ rules:
   - PROCESS-NAME,xray,DIRECT
   - PROCESS-NAME,qbittorrent-nox,DIRECT
   - MATCH,我的跳板
-
-tun:
-  enable: false
-  stack: system
-  auto-route: true
-  auto-detect-interface: true
