@@ -17,7 +17,7 @@ proxies:
     dialer-proxy: "订阅自动优选"
   - name: "viewturbo"
     type: http
-    server: host.docker.internal
+    server: 127.0.0.1
     port: 15732
 
 proxy-groups:

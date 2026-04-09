@@ -4,9 +4,7 @@ services:
     container_name: clash-meta
     image: metacubex/mihomo:latest
     restart: unless-stopped
-    ports:
-      - "7890:7890"
-      - "28001:28001"
+    network_mode: host
     volumes:
       - ./clash:/root/.config/mihomo
 
@@ -14,7 +12,9 @@ services:
     container_name: metacubexd
     image: ghcr.io/metacubex/metacubexd
     restart: unless-stopped
-    ports:
-      - '127.0.0.1:28002:80'
+    network_mode: host
+    environment:
+      PORT: "28002"
+      DEFAULT_BACKEND_URL: "http://127.0.0.1:28001"
     volumes:
       - ./caddy:/config/caddy
