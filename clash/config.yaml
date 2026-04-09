@@ -15,6 +15,10 @@ proxies:
     server: 43.135.183.70
     port: 28008
     dialer-proxy: "订阅自动优选"
+  - name: "viewturbo"
+    type: http
+    server: host.docker.internal
+    port: 15732
 
 proxy-groups:
   - name: "我的跳板"
@@ -22,6 +26,7 @@ proxy-groups:
     proxies:
       - "链式-订阅到SOCKS"
       - "我的SOCKS"
+      - "viewturbo"
       - "订阅自动优选"
     use:
      - "第三方订阅"
