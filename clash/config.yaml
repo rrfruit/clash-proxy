@@ -1,18 +1,36 @@
 mixed-port: 7890
 allow-lan: true
-external-controller: 127.0.0.1:28001
+external-controller: 0.0.0.0:28001
 secret: 8a09518e-5d92-4a7e-b811-9dfd3b611842
 
 mode: rule
 proxies:
+  - name: "我的SOCKS"
+    type: socks5
+    server: 43.135.183.70
+    port: 28008
+  # 连接 SOCKS 前先经「订阅自动优选」选延迟最低的订阅节点，再到本 SOCKS
+  - name: "链式-订阅到SOCKS"
+    type: socks5
+    server: 43.135.183.70
+    port: 28008
+    dialer-proxy: "订阅自动优选"
 
 proxy-groups:
   - name: "我的跳板"
     type: select
+    proxies:
+      - "链式-订阅到SOCKS"
+      - "我的SOCKS"
     use:
      - "第三方订阅"
   - name: "第三方订阅"
     type: select
+    use:
+     - "第三方订阅"
+  # 从订阅里按延迟自动选当前最优节点（供链式 SOCKS 的 dialer 使用）
+  - name: "订阅自动优选"
+    type: url-test # 根据 HTTP 测速延迟自动选择
     use:
      - "第三方订阅"
 
@@ -23,7 +41,7 @@ my-url-test: &my-url-test
     enable: true
     url: https://cp.cloudflare.com
     # 节点连通性检测时间，单位为秒
-    interval: 300
+    interval: 30
     # 节点超时延迟，单位为毫秒
     timeout: 1000
     # 节点自动切换差值，单位为毫秒

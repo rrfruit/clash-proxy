@@ -1,0 +1,18 @@
+.DS_Store
+
+# Mihomo runtime / downloaded data
+clash/*.db
+clash/di3fang.yaml
+clash/Country.mmdb
+clash/geoip.metadb
+clash/geoip.db
+clash/geoip.dat
+clash/geosite.dat
+clash/geosite.db
+
+# metacubexd Caddy persistence
+caddy/
+
+# optional local overrides / secrets (uncomment if you use them)
+# clash/config.local.yaml
+# .env
